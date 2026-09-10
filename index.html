@@ -1,0 +1,4412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Beyond the Best Before</title>
+
+<style>
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+:root {
+  --bg: #8fa8a4;
+  --green: #6c9c98;
+  --green-dark: #527b77;
+  --pink: #d49bc3;
+  --paper: #efedef;
+  --ink: #111111;
+}
+
+
+/* =========================================================
+   BASIC
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+
+  width: 100%;
+
+  overflow-x: hidden;
+
+  background: var(--bg);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+
+/* =========================================================
+   PAGE 1
+========================================================= */
+
+.page-one {
+  padding: 15px;
+
+  background: var(--bg);
+}
+
+.interface {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 25px;
+
+  background: var(--paper);
+}
+
+
+/* =========================================================
+   PAGE 1 HEADER
+========================================================= */
+
+.interface-header {
+  position: absolute;
+
+  top: 20px;
+
+  left: 0;
+  right: 0;
+
+  z-index: 30;
+
+  text-align: center;
+}
+
+.interface-header strong {
+  display: block;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 10px;
+  font-weight: 400;
+
+  letter-spacing: .7px;
+}
+
+.interface-header span {
+  display: block;
+
+  margin-top: 4px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  opacity: .55;
+}
+
+
+/* =========================================================
+   PAGE INDEX
+========================================================= */
+
+.page-index {
+  position: absolute;
+
+  top: 77px;
+
+  z-index: 30;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+}
+
+.index-left {
+  left: 80px;
+}
+
+.index-right {
+  right: 80px;
+}
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.video-shell {
+  position: absolute;
+
+  left: 5%;
+  right: 5%;
+
+  top: 118px;
+  bottom: 95px;
+
+  overflow: hidden;
+
+  border:
+    1px solid #111;
+
+  background: #000;
+
+  box-shadow:
+    10px 10px 0
+    rgba(108,156,152,.28);
+}
+
+.video {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+}
+
+.video-bottom {
+  z-index: 0;
+}
+
+.video-top {
+  z-index: 2;
+}
+
+.video-title {
+  position: absolute;
+
+  left: 22px;
+  top: 20px;
+
+  z-index: 15;
+
+  padding:
+    7px 10px;
+
+  border:
+    1px solid #111;
+
+  background: var(--paper);
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   FLOATING BOXES
+========================================================= */
+
+.floating-layer {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 12;
+
+  pointer-events: none;
+}
+
+.float-box {
+  position: absolute;
+
+  min-width: 110px;
+
+  padding:
+    10px 12px;
+
+  border:
+    1px solid #111;
+
+  background:
+    rgba(239,237,239,.93);
+
+  box-shadow:
+    5px 5px 0
+    rgba(108,156,152,.35);
+}
+
+.float-box strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 18px;
+
+  font-weight: 500;
+}
+
+.float-box span {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+}
+
+.box-1 {
+  left: 5%;
+  top: 14%;
+}
+
+.box-2 {
+  left: 30%;
+  top: 8%;
+}
+
+.box-3 {
+  right: 5%;
+  top: 16%;
+}
+
+.box-4 {
+  left: 12%;
+  top: 52%;
+}
+
+.box-5 {
+  right: 25%;
+  top: 48%;
+}
+
+.box-6 {
+  right: 5%;
+  bottom: 12%;
+}
+
+.box-7 {
+  left: 43%;
+  bottom: 8%;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal-lens {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 360px;
+  height: 240px;
+
+  transform:
+    translate(-50%, -50%);
+
+  overflow: hidden;
+
+  z-index: 9;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  border:
+    2px solid var(--paper);
+
+  box-shadow:
+    7px 7px 0 var(--green);
+
+  transition:
+    opacity .15s ease;
+}
+
+.reveal-lens.active {
+  opacity: 1;
+}
+
+.lens-video {
+  position: absolute;
+
+  width: 100vw;
+  height: 100vh;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+.cursor-dot {
+  position: absolute;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid #000;
+
+  background: #fff;
+
+  z-index: 50;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   PAGE 1 FOOTER
+========================================================= */
+
+.page-one-footer {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 25px;
+
+  z-index: 30;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 65px;
+}
+
+.footer-item {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+}
+
+.footer-button {
+  padding:
+    8px 17px;
+
+  border:
+    1px solid #111;
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   PAGE 2
+========================================================= */
+
+.page-two {
+  position: relative;
+
+  isolation: isolate;
+
+  background: #8fa8a4;
+}
+
+
+/* =========================================================
+   MOVING BACKGROUND
+========================================================= */
+
+.page-two::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -8%;
+
+  z-index: 0;
+
+  background-image:
+    url("background.jpg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  pointer-events: none;
+
+  animation:
+    backgroundDrift
+    18s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes backgroundDrift {
+
+  0% {
+    transform:
+      scale(1.06)
+      translate3d(-1.5%, -1%, 0);
+
+    opacity: .30;
+
+    filter:
+      saturate(.60)
+      contrast(.84)
+      brightness(.98)
+      blur(2.6px);
+  }
+
+  25% {
+    transform:
+      scale(1.10)
+      translate3d(.8%, -1.8%, 0);
+
+    opacity: .46;
+
+    filter:
+      saturate(.72)
+      contrast(.90)
+      brightness(1)
+      blur(1.2px);
+  }
+
+  50% {
+    transform:
+      scale(1.14)
+      translate3d(1.5%, .2%, 0);
+
+    opacity: .54;
+
+    filter:
+      saturate(.80)
+      contrast(.94)
+      brightness(1.02)
+      blur(.6px);
+  }
+
+  75% {
+    transform:
+      scale(1.10)
+      translate3d(-1%, 1.4%, 0);
+
+    opacity: .37;
+
+    filter:
+      saturate(.65)
+      contrast(.87)
+      brightness(.96)
+      blur(2.8px);
+  }
+
+  100% {
+    transform:
+      scale(1.16)
+      translate3d(1.8%, .7%, 0);
+
+    opacity: .50;
+
+    filter:
+      saturate(.76)
+      contrast(.92)
+      brightness(1)
+      blur(1.3px);
+  }
+
+}
+
+
+/* =========================================================
+   BACKGROUND FILM
+========================================================= */
+
+.page-two::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      ellipse at 45% 44%,
+      rgba(143,168,164,.02) 0%,
+      rgba(143,168,164,.07) 25%,
+      rgba(143,168,164,.18) 55%,
+      rgba(143,168,164,.38) 100%
+    ),
+
+    linear-gradient(
+      180deg,
+      rgba(143,168,164,.12) 0%,
+      rgba(143,168,164,.02) 45%,
+      rgba(143,168,164,.24) 100%
+    );
+
+  animation:
+    backgroundFade
+    8s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes backgroundFade {
+
+  0% {
+    opacity: .72;
+  }
+
+  35% {
+    opacity: .38;
+  }
+
+  65% {
+    opacity: .20;
+  }
+
+  100% {
+    opacity: .62;
+  }
+
+}
+
+
+/* =========================================================
+   HAZE
+========================================================= */
+
+.background-haze {
+  position: absolute;
+
+  inset: -15%;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      circle at 20% 35%,
+      rgba(239,237,239,.25),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 75% 65%,
+      rgba(212,155,195,.12),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 55% 20%,
+      rgba(143,168,164,.35),
+      transparent 32%
+    );
+
+  filter:
+    blur(35px);
+
+  animation:
+    hazeMove
+    13s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes hazeMove {
+
+  0% {
+    transform:
+      translate3d(-3%,0,0)
+      scale(1);
+
+    opacity: .30;
+  }
+
+  50% {
+    transform:
+      translate3d(3%,-2%,0)
+      scale(1.08);
+
+    opacity: .62;
+  }
+
+  100% {
+    transform:
+      translate3d(-1%,3%,0)
+      scale(1.03);
+
+    opacity: .38;
+  }
+
+}
+
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+.page-two-dot-layer {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  opacity: .075;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(25,47,45,.75) 1px,
+      transparent 1.2px
+    );
+
+  background-size:
+    7px 7px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title-marquee {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 145px;
+
+  z-index: 5;
+
+  overflow: hidden;
+
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.16);
+}
+
+.title-track {
+  position: absolute;
+
+  top: -14px;
+
+  display: flex;
+
+  width: max-content;
+
+  animation:
+    marqueeMove
+    17s
+    linear
+    infinite;
+
+  animation-play-state: paused;
+}
+
+.title-marquee:hover
+.title-track {
+  animation-play-state: running;
+}
+
+.title-piece {
+  white-space: nowrap;
+
+  padding-right: 70px;
+
+  font-size:
+    clamp(
+      82px,
+      11vw,
+      180px
+    );
+
+  line-height: .9;
+
+  font-weight: 900;
+
+  letter-spacing: -9px;
+
+  color: var(--pink);
+}
+
+.title-outline {
+  color: transparent;
+
+  -webkit-text-stroke:
+    1px
+    rgba(20,20,20,.48);
+}
+
+
+@keyframes marqueeMove {
+
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-50%);
+  }
+
+}
+
+
+/* =========================================================
+   PAGE NUMBER — ENLARGED
+========================================================= */
+
+.page-two-number {
+  position: absolute;
+
+  right: 32px;
+  top: 158px;
+
+  z-index: 20;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  color:
+    rgba(0,0,0,.55);
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.value-layout {
+  position: absolute;
+
+  left: 4%;
+  right: 4%;
+
+  top: 170px;
+  bottom: 45px;
+
+  z-index: 10;
+
+  display: grid;
+
+  grid-template-columns:
+    41% 59%;
+
+  column-gap: 28px;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   INFO PANEL
+========================================================= */
+
+.info-panel {
+  position: relative;
+
+  width: 100%;
+  max-width: 560px;
+
+  height: 420px;
+
+  margin-left: 18px;
+
+  padding: 20px;
+
+  border:
+    1px solid
+    rgba(0,0,0,.15);
+
+  border-radius: 24px;
+
+  background:
+    rgba(239,237,239,.96);
+
+  box-shadow:
+    12px 12px 0
+    rgba(60,80,78,.18);
+}
+
+.info-top {
+  display: grid;
+
+  grid-template-columns:
+    145px 1fr;
+
+  gap: 20px;
+
+  padding-bottom: 18px;
+
+  border-bottom:
+    1px solid #555;
+}
+
+.info-symbol {
+  width: 145px;
+  height: 120px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.info-symbol img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   INFO HEADING — ENLARGED
+========================================================= */
+
+.info-heading {
+  margin: 0;
+
+  align-self: center;
+
+  text-align: right;
+
+  font-size:
+    clamp(
+      38px,
+      3.2vw,
+      56px
+    );
+
+  line-height: .9;
+
+  font-weight: 500;
+
+  letter-spacing: -2px;
+}
+
+
+/* =========================================================
+   DESCRIPTION — ENLARGED
+========================================================= */
+
+.info-description {
+  width: 94%;
+
+  margin-top: 20px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  text-transform: uppercase;
+}
+
+.info-tags {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 17px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   TAGS — ENLARGED
+========================================================= */
+
+.info-tag {
+  padding:
+    7px 10px;
+
+  border:
+    1px solid #111;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.panel-controls {
+  position: absolute;
+
+  left: 20px;
+  right: 20px;
+
+  bottom: 18px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 18px;
+}
+
+.arrow {
+  height: 82px;
+
+  border:
+    1px solid #111;
+
+  background:
+    rgba(239,237,239,.35);
+
+  font-size: 44px;
+
+  cursor: pointer;
+}
+
+.arrow:hover {
+  background: var(--green);
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   COUNTER — ENLARGED
+========================================================= */
+
+.counter {
+  min-width: 65px;
+
+  text-align: center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  letter-spacing: .5px;
+}
+
+
+/* =========================================================
+   CARD STACK
+========================================================= */
+
+.card-stage {
+  position: relative;
+
+  width: 100%;
+  height: 610px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  perspective: 1500px;
+}
+
+.value-stack {
+  position: relative;
+
+  width: 590px;
+  height: 460px;
+
+  transform-style:
+    preserve-3d;
+}
+
+.value-card {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 560px;
+  height: 270px;
+
+  margin-left: -280px;
+  margin-top: -135px;
+
+  padding:
+    55px 50px;
+
+  border:
+    1px solid
+    rgba(20,20,20,.45);
+
+  background:
+    rgba(91,132,128,.84);
+
+  cursor: pointer;
+
+  transform-origin:
+    center center;
+
+  transition:
+    transform
+    .72s
+    cubic-bezier(.18,.82,.22,1),
+    opacity .55s ease,
+    filter .55s ease,
+    background .55s ease,
+    border-color .55s ease,
+    box-shadow .55s ease;
+}
+
+.value-card.active {
+  z-index: 20;
+
+  opacity: 1;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(212,155,195,.16),
+      rgba(108,156,152,.88) 30%,
+      rgba(82,123,119,.90)
+    );
+
+  border:
+    2px solid var(--pink);
+
+  transform:
+    translate3d(
+      0,
+      0,
+      110px
+    );
+
+  box-shadow:
+    0 35px 60px
+    rgba(38,65,62,.26),
+
+    inset
+    0 -12px 0
+    var(--pink);
+}
+
+.value-card.before {
+  z-index: 6;
+
+  opacity: .28;
+
+  filter:
+    saturate(.55);
+
+  transform:
+    translate3d(
+      35px,
+      -165px,
+      -90px
+    )
+    scale(.93);
+}
+
+.value-card.after {
+  z-index: 5;
+
+  opacity: .27;
+
+  filter:
+    saturate(.5);
+
+  transform:
+    translate3d(
+      40px,
+      165px,
+      -105px
+    )
+    scale(.93);
+}
+
+
+/* =========================================================
+   CARD NUMBER — ENLARGED
+========================================================= */
+
+.card-number {
+  position: absolute;
+
+  left: 42px;
+  top: 38px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  color:
+    rgba(0,0,0,.48);
+}
+
+.value-card.active
+.card-number {
+  color:
+    rgba(255,255,255,.72);
+}
+
+
+/* =========================================================
+   CARD TITLE — ENLARGED
+========================================================= */
+
+.card-title {
+  margin-top: 15px;
+
+  font-size: 58px;
+
+  line-height: .88;
+
+  font-weight: 800;
+
+  letter-spacing: -3px;
+
+  color:
+    rgba(15,15,15,.55);
+
+  text-transform: uppercase;
+}
+
+.value-card.active
+.card-title {
+  color: var(--pink);
+}
+
+
+/* =========================================================
+   CARD META — ENLARGED
+========================================================= */
+
+.card-meta {
+  position: absolute;
+
+  left: 50px;
+  bottom: 40px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  letter-spacing: .2px;
+
+  color:
+    rgba(0,0,0,.46);
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.purchase-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    rgba(83,120,116,.68);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
+}
+
+.purchase-overlay.open {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+.purchase-window {
+  position: relative;
+
+  width:
+    min(
+      880px,
+      90vw
+    );
+
+  height:
+    min(
+      610px,
+      82vh
+    );
+
+  overflow: hidden;
+
+  border:
+    1px solid #111;
+
+  border-radius: 25px;
+
+  background: var(--paper);
+
+  box-shadow:
+    16px 16px 0
+    rgba(47,76,72,.22);
+}
+
+
+/* =========================================================
+   POPUP HEADER
+========================================================= */
+
+.purchase-header {
+  position: absolute;
+
+  left: 25px;
+  right: 25px;
+
+  top: 20px;
+
+  z-index: 20;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 12px;
+
+  border-bottom:
+    1px solid #111;
+}
+
+
+/* =========================================================
+   POPUP HEADER TEXT — ENLARGED
+========================================================= */
+
+.purchase-header-text {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 1px;
+}
+
+.close-purchase {
+  width: 38px;
+  height: 38px;
+
+  border:
+    1px solid #111;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 22px;
+}
+
+.close-purchase:hover {
+  background: #111;
+
+  color: white;
+}
+
+
+/* =========================================================
+   POPUP CONTENT
+========================================================= */
+
+.purchase-content {
+  position: absolute;
+
+  inset:
+    80px 25px 25px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 28px;
+}
+
+
+/* =========================================================
+   OBJECT STAGE
+========================================================= */
+
+.object-stage {
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid #111;
+
+  background: var(--bg);
+
+  perspective: 1200px;
+}
+
+.object-stage::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: .08;
+
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      circle,
+      #111 1px,
+      transparent 1.2px
+    );
+
+  background-size:
+    7px 7px;
+}
+
+
+/* =========================================================
+   START APPLE
+========================================================= */
+
+.purchase-apple {
+  position: relative;
+
+  z-index: 5;
+
+  width: 62%;
+
+  max-width: 260px;
+
+  object-fit: contain;
+}
+
+.purchase-apple.hidden {
+  display: none;
+}
+
+.purchase-apple.explode {
+  animation:
+    appleExplosion
+    .78s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+}
+
+
+@keyframes appleExplosion {
+
+  0% {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0deg);
+  }
+
+  20% {
+    transform:
+      scale(1.20)
+      rotate(-5deg);
+  }
+
+  45% {
+    transform:
+      scale(1.25)
+      rotate(5deg);
+
+    filter:
+      brightness(1.5);
+  }
+
+  70% {
+    opacity: .35;
+
+    transform:
+      scale(.55)
+      rotate(15deg);
+
+    filter:
+      blur(3px)
+      brightness(2);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      scale(.03)
+      rotate(35deg);
+
+    filter:
+      blur(7px)
+      brightness(2.4);
+  }
+
+}
+
+
+/* =========================================================
+   REWARD
+========================================================= */
+
+.reward-image {
+  position: absolute;
+
+  z-index: 9;
+
+  width: 275px;
+  height: 275px;
+
+  object-fit: contain;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transform-origin:
+    center center;
+
+  transform-style:
+    preserve-3d;
+
+  backface-visibility:
+    visible;
+
+  filter:
+    drop-shadow(
+      0 20px 25px
+      rgba(45,35,5,.18)
+    );
+}
+
+
+.reward-image.show {
+  animation:
+    rewardPop
+    1.55s
+    cubic-bezier(.18,.82,.20,1)
+    forwards;
+}
+
+
+@keyframes rewardPop {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      translateZ(-120px)
+      scale(.08)
+      rotateY(-360deg);
+
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  28% {
+
+    transform:
+      translateY(2px)
+      translateZ(10px)
+      scale(.68)
+      rotateY(-270deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-12px)
+      translateZ(60px)
+      scale(1.04)
+      rotateY(-180deg);
+
+  }
+
+  70% {
+
+    transform:
+      translateY(-7px)
+      translateZ(85px)
+      scale(1.13)
+      rotateY(-90deg);
+
+  }
+
+  86% {
+
+    transform:
+      translateY(2px)
+      translateZ(30px)
+      scale(.96)
+      rotateY(-16deg);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      translateZ(0)
+      scale(1)
+      rotateY(0deg);
+
+  }
+
+}
+
+
+.reward-image.finished {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1)
+    rotateY(0deg);
+}
+
+
+/* =========================================================
+   SUPPORT SCREEN
+========================================================= */
+
+.support-route {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 8;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 45px;
+
+  text-align: center;
+}
+
+.support-route.visible {
+  display: flex;
+}
+
+.support-inner {
+  width: 100%;
+}
+
+.support-icon {
+  width: 100px;
+  height: 100px;
+
+  margin:
+    0 auto
+    28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid #111;
+
+  border-radius: 50%;
+
+  background:
+    var(--paper);
+
+  font-size: 36px;
+}
+
+
+/* =========================================================
+   SUPPORT TEXT — ENLARGED
+========================================================= */
+
+.support-small {
+  margin-bottom: 14px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 1px;
+}
+
+.support-big {
+  margin-bottom: 18px;
+
+  font-size: 40px;
+
+  line-height: .95;
+
+  font-weight: 700;
+}
+
+.support-copy {
+  max-width: 330px;
+
+  margin: auto;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RING
+========================================================= */
+
+.reward-ring {
+  position: absolute;
+
+  z-index: 7;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid
+    rgba(255,224,109,.85);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.reward-ring.show {
+  animation:
+    rewardRing
+    900ms
+    ease-out
+    forwards;
+}
+
+
+@keyframes rewardRing {
+
+  0% {
+
+    opacity: 1;
+
+    transform:
+      scale(.2);
+
+  }
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      scale(3.5);
+
+  }
+
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particle {
+  position: absolute;
+
+  z-index: 10;
+
+  left: 50%;
+  top: 50%;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  animation:
+    particleBurst
+    950ms
+    ease-out
+    forwards;
+}
+
+
+@keyframes particleBurst {
+
+  from {
+
+    opacity: 1;
+
+    transform:
+      translate(-50%,-50%)
+      translate(0,0);
+
+  }
+
+  to {
+
+    opacity: 0;
+
+    transform:
+      translate(-50%,-50%)
+      translate(
+        var(--x),
+        var(--y)
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   PURCHASE INFO
+========================================================= */
+
+.purchase-info {
+  position: relative;
+
+  padding:
+    15px 4px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   PURCHASE LEVEL — ENLARGED
+========================================================= */
+
+.purchase-level {
+  margin-bottom: 12px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  letter-spacing: .5px;
+}
+
+
+/* =========================================================
+   PURCHASE TITLE — ENLARGED
+========================================================= */
+
+.purchase-title {
+  margin: 0;
+
+  font-size:
+    clamp(
+      46px,
+      5.5vw,
+      78px
+    );
+
+  line-height: .86;
+
+  font-weight: 500;
+
+  letter-spacing: -4px;
+}
+
+.purchase-divider {
+  height: 1px;
+
+  margin:
+    22px 0;
+
+  background: #111;
+}
+
+
+/* =========================================================
+   PURCHASE DESCRIPTION — ENLARGED
+========================================================= */
+
+.purchase-description {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+}
+
+.price-box {
+  margin-top: auto;
+}
+
+.price-box.hidden {
+  display: none;
+}
+
+
+/* =========================================================
+   PRICE LABEL — ENLARGED
+========================================================= */
+
+.price-label {
+  margin-bottom: 8px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
+}
+
+.price-number {
+  margin-bottom: 18px;
+
+  font-size:
+    clamp(
+      56px,
+      7vw,
+      92px
+    );
+
+  line-height: .8;
+
+  letter-spacing: -5px;
+}
+
+
+/* =========================================================
+   BUTTONS — ENLARGED
+========================================================= */
+
+.pay-button,
+.support-button {
+  width: 100%;
+
+  min-height: 82px;
+
+  border:
+    1px solid #111;
+
+  background: var(--pink);
+
+  cursor: pointer;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 14px;
+
+  letter-spacing: 1px;
+}
+
+.pay-button:hover,
+.support-button:hover {
+  background: #111;
+
+  color: var(--pink);
+}
+
+.support-action {
+  display: none;
+
+  margin-top: auto;
+}
+
+.support-action.visible {
+  display: block;
+}
+
+
+/* =========================================================
+   SUPPORT LABEL — ENLARGED
+========================================================= */
+
+.support-label {
+  margin-bottom: 12px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RESULT — ENLARGED
+========================================================= */
+
+.result-message {
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+
+  bottom: 18px;
+
+  z-index: 30;
+
+  padding:
+    15px 13px;
+
+  border:
+    1px solid #111;
+
+  background:
+    var(--paper);
+
+  text-align: center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
+
+  line-height: 1.55;
+
+  opacity: 0;
+
+  transform:
+    translateY(15px);
+
+  transition:
+    opacity .4s ease,
+    transform .4s ease;
+}
+
+.result-message strong {
+  font-size: 14px;
+}
+
+.result-message.show {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 900px) {
+
+  .value-layout {
+    left: 20px;
+    right: 20px;
+
+    grid-template-columns:
+      1fr;
+  }
+
+  .info-panel {
+    height: 310px;
+
+    margin-left: 0;
+  }
+
+  .value-stack {
+    transform:
+      scale(.65);
+  }
+
+  .purchase-content {
+    grid-template-columns:
+      1fr;
+
+    overflow-y: auto;
+  }
+
+  .object-stage {
+    min-height: 280px;
+  }
+
+  .reward-image {
+    width: 210px;
+    height: 210px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     PAGE 1
+========================================================= -->
+
+<section class="page page-one">
+
+<div class="interface">
+
+
+  <div class="interface-header">
+
+    <strong>
+      BEYOND THE BEST BEFORE
+    </strong>
+
+    <span>
+      FOOD / VALUE / TIME
+    </span>
+
+  </div>
+
+
+  <div class="page-index index-left">
+    ( 01 )
+  </div>
+
+
+  <div class="page-index index-right">
+    OBSERVATION +
+  </div>
+
+
+  <div
+    class="video-shell"
+    id="screen"
+  >
+
+
+    <div class="video-title">
+      FOOD STATE / LIVE SAMPLE
+    </div>
+
+
+    <video
+      class="video video-bottom"
+      id="bottom-video"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+
+      <source
+        src="Fruit3.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+
+    <video
+      class="video video-top"
+      id="top-video"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+
+      <source
+        src="Fruit.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+
+    <div
+      class="reveal-lens"
+      id="reveal-lens"
+    >
+
+      <video
+        class="lens-video"
+        id="lens-video"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+
+        <source
+          src="Fruit3.mp4"
+          type="video/mp4"
+        >
+
+      </video>
+
+    </div>
+
+
+    <div class="floating-layer">
+
+
+      <div class="float-box box-1">
+        <strong>£3.80</strong>
+        <span>Fresh</span>
+      </div>
+
+
+      <div class="float-box box-2">
+        <strong>92%</strong>
+        <span>Freshness</span>
+      </div>
+
+
+      <div class="float-box box-3">
+        <strong>24 HRS</strong>
+        <span>Best Taste</span>
+      </div>
+
+
+      <div class="float-box box-4">
+        <strong>£1.20</strong>
+        <span>Reduced</span>
+      </div>
+
+
+      <div class="float-box box-5">
+        <strong>48%</strong>
+        <span>Freshness</span>
+      </div>
+
+
+      <div class="float-box box-6">
+        <strong>£0.60</strong>
+        <span>Near Expiry</span>
+      </div>
+
+
+      <div class="float-box box-7">
+        <strong>BEST BEFORE</strong>
+        <span>Today</span>
+      </div>
+
+
+    </div>
+
+
+    <div
+      class="cursor-dot"
+      id="cursor-dot"
+    ></div>
+
+
+  </div>
+
+
+  <div class="page-one-footer">
+
+    <div class="footer-item">
+      ( HOLD )
+    </div>
+
+    <div class="footer-item footer-button">
+      HOLD MOUSE TO REVEAL
+    </div>
+
+    <div class="footer-item">
+      SCROLL ↓
+    </div>
+
+  </div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- =========================================================
+     PAGE 2
+========================================================= -->
+
+<section class="page page-two">
+
+
+<div class="background-haze"></div>
+
+<div class="page-two-dot-layer"></div>
+
+
+<div class="title-marquee">
+
+
+  <div class="title-track">
+
+
+    <div class="title-piece">
+
+      BEYOND THE
+
+      <span class="title-outline">
+        BEST BEFORE
+      </span>
+
+      &nbsp; · &nbsp;
+
+    </div>
+
+
+    <div class="title-piece">
+
+      BEYOND THE
+
+      <span class="title-outline">
+        BEST BEFORE
+      </span>
+
+      &nbsp; · &nbsp;
+
+    </div>
+
+
+    <div class="title-piece">
+
+      BEYOND THE
+
+      <span class="title-outline">
+        BEST BEFORE
+      </span>
+
+      &nbsp; · &nbsp;
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<div class="page-two-number">
+
+  02 / FOOD VALUE SYSTEM
+
+</div>
+
+
+<div class="value-layout">
+
+
+
+<!-- =========================================================
+     LEFT
+========================================================= -->
+
+<div class="info-panel">
+
+
+  <div class="info-top">
+
+
+    <div class="info-symbol">
+
+      <img
+        src="Apple.png"
+        alt="Apple"
+      >
+
+    </div>
+
+
+    <h2
+      class="info-heading"
+      id="info-heading"
+    >
+
+      HIGH<br>
+      PREMIUM
+
+    </h2>
+
+
+  </div>
+
+
+  <div
+    class="info-description"
+    id="info-description"
+  >
+
+    FOOD GIVEN ADDITIONAL VALUE THROUGH
+    BRANDING, EXCLUSIVITY, RARITY,
+    PRESENTATION OR EXPERIENCE.
+
+  </div>
+
+
+  <div
+    class="info-tags"
+    id="info-tags"
+  ></div>
+
+
+  <div class="panel-controls">
+
+
+    <button
+      class="arrow"
+      id="prev"
+      type="button"
+    >
+      ←
+    </button>
+
+
+    <div
+      class="counter"
+      id="counter"
+    >
+      01 / 03
+    </div>
+
+
+    <button
+      class="arrow"
+      id="next"
+      type="button"
+    >
+      →
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+<!-- =========================================================
+     CARDS
+========================================================= -->
+
+<div class="card-stage">
+
+
+  <div class="value-stack">
+
+
+    <div
+      class="value-card active"
+      data-index="0"
+    >
+
+      <div class="card-number">
+        01 / VALUE LEVEL
+      </div>
+
+      <div class="card-title">
+        HIGH PREMIUM
+      </div>
+
+      <div class="card-meta">
+        LUXURY · EXCLUSIVE · PREMIUM
+      </div>
+
+    </div>
+
+
+
+    <div
+      class="value-card after"
+      data-index="1"
+    >
+
+      <div class="card-number">
+        02 / VALUE LEVEL
+      </div>
+
+      <div class="card-title">
+
+        STANDARD<br>
+        MARKET
+
+      </div>
+
+      <div class="card-meta">
+        EVERYDAY · REGULAR · STANDARD
+      </div>
+
+    </div>
+
+
+
+    <div
+      class="value-card before"
+      data-index="2"
+    >
+
+      <div class="card-number">
+        03 / VALUE LEVEL
+      </div>
+
+      <div class="card-title">
+
+        REDUCED /<br>
+        SUPPORTED
+
+      </div>
+
+      <div class="card-meta">
+        DISCOUNT · FOOD AID · REDISTRIBUTION
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- =========================================================
+     POPUP
+========================================================= -->
+
+<div
+  class="purchase-overlay"
+  id="purchase-overlay"
+>
+
+
+<div class="purchase-window">
+
+
+  <div class="purchase-header">
+
+
+    <div
+      class="purchase-header-text"
+      id="purchase-header-text"
+    >
+    </div>
+
+
+    <button
+      class="close-purchase"
+      id="close-purchase"
+      type="button"
+    >
+      ×
+    </button>
+
+
+  </div>
+
+
+
+  <div class="purchase-content">
+
+
+
+    <!-- =====================================================
+         OBJECT AREA
+    ====================================================== -->
+
+    <div
+      class="object-stage"
+      id="object-stage"
+    >
+
+
+      <img
+        src="Apple.png"
+        class="purchase-apple"
+        id="purchase-apple"
+        alt="Apple"
+      >
+
+
+      <img
+        src=""
+        class="reward-image"
+        id="reward-image"
+        alt="Reward"
+      >
+
+
+      <div
+        class="reward-ring"
+        id="reward-ring"
+      ></div>
+
+
+
+      <!-- SUPPORT VISUAL -->
+
+      <div
+        class="support-route"
+        id="support-route"
+      >
+
+        <div class="support-inner">
+
+
+          <div class="support-icon">
+            →
+          </div>
+
+
+          <div class="support-small">
+
+            ACCESS ROUTE / 03
+
+          </div>
+
+
+          <div class="support-big">
+
+            SUPPORTED<br>
+            ACCESS
+
+          </div>
+
+
+          <div class="support-copy">
+
+            DIRECT PURCHASE IS NOT AVAILABLE
+            FOR THIS VALUE LEVEL.
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <div
+        class="result-message"
+        id="result-message"
+      >
+
+
+        <strong
+          id="result-title"
+        >
+        </strong>
+
+
+        <br>
+
+
+        <span
+          id="result-text"
+        >
+        </span>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         INFO
+    ====================================================== -->
+
+    <div class="purchase-info">
+
+
+      <div
+        class="purchase-level"
+        id="purchase-level"
+      >
+      </div>
+
+
+      <h2
+        class="purchase-title"
+        id="purchase-title"
+      >
+      </h2>
+
+
+      <div class="purchase-divider"></div>
+
+
+      <div
+        class="purchase-description"
+        id="purchase-description"
+      >
+      </div>
+
+
+
+      <!-- PRICE -->
+
+      <div
+        class="price-box"
+        id="price-box"
+      >
+
+
+        <div class="price-label">
+
+          WILLING TO PAY
+
+        </div>
+
+
+        <div
+          class="price-number"
+          id="price-number"
+        >
+        </div>
+
+
+        <button
+          class="pay-button"
+          id="pay-button"
+          type="button"
+        >
+        </button>
+
+
+      </div>
+
+
+
+      <!-- SUPPORT -->
+
+      <div
+        class="support-action"
+        id="support-action"
+      >
+
+
+        <div class="support-label">
+
+          ACCESS METHOD / ALLOCATION
+
+        </div>
+
+
+        <button
+          class="support-button"
+          id="support-button"
+          type="button"
+        >
+
+          ACCESS SUPPORT →
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+const screen =
+  document.getElementById("screen");
+
+const topVideo =
+  document.getElementById("top-video");
+
+const bottomVideo =
+  document.getElementById("bottom-video");
+
+const lensVideo =
+  document.getElementById("lens-video");
+
+const revealLens =
+  document.getElementById("reveal-lens");
+
+const cursorDot =
+  document.getElementById("cursor-dot");
+
+
+[
+  topVideo,
+  bottomVideo,
+  lensVideo
+].forEach(
+
+  video => {
+
+    video.play().catch(() => {});
+
+  }
+
+);
+
+
+
+/* =========================================================
+   VIDEO SYNC
+========================================================= */
+
+setInterval(
+
+  () => {
+
+
+    if (
+      !Number.isFinite(
+        topVideo.currentTime
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      Math.abs(
+        bottomVideo.currentTime -
+        topVideo.currentTime
+      ) > .15
+    ) {
+
+      try {
+
+        bottomVideo.currentTime =
+          topVideo.currentTime;
+
+      }
+
+      catch(error) {}
+
+    }
+
+
+    if (
+      Math.abs(
+        lensVideo.currentTime -
+        topVideo.currentTime
+      ) > .15
+    ) {
+
+      try {
+
+        lensVideo.currentTime =
+          topVideo.currentTime;
+
+      }
+
+      catch(error) {}
+
+    }
+
+
+  },
+
+  500
+
+);
+
+
+
+/* =========================================================
+   LENS
+========================================================= */
+
+let targetX =
+  screen.clientWidth / 2;
+
+let targetY =
+  screen.clientHeight / 2;
+
+let lensX =
+  targetX;
+
+let lensY =
+  targetY;
+
+let cursorX =
+  targetX;
+
+let cursorY =
+  targetY;
+
+
+screen.addEventListener(
+
+  "pointermove",
+
+  event => {
+
+
+    const rect =
+      screen.getBoundingClientRect();
+
+
+    targetX =
+      event.clientX -
+      rect.left;
+
+
+    targetY =
+      event.clientY -
+      rect.top;
+
+  }
+
+);
+
+
+screen.addEventListener(
+
+  "pointerdown",
+
+  event => {
+
+
+    event.preventDefault();
+
+
+    revealLens
+      .classList
+      .add("active");
+
+  }
+
+);
+
+
+window.addEventListener(
+
+  "pointerup",
+
+  () => {
+
+
+    revealLens
+      .classList
+      .remove("active");
+
+  }
+
+);
+
+
+function animateLens() {
+
+
+  lensX +=
+    (
+      targetX -
+      lensX
+    ) * .16;
+
+
+  lensY +=
+    (
+      targetY -
+      lensY
+    ) * .16;
+
+
+  cursorX +=
+    (
+      targetX -
+      cursorX
+    ) * .4;
+
+
+  cursorY +=
+    (
+      targetY -
+      cursorY
+    ) * .4;
+
+
+  revealLens.style.left =
+    lensX + "px";
+
+
+  revealLens.style.top =
+    lensY + "px";
+
+
+  const w =
+    revealLens.offsetWidth;
+
+
+  const h =
+    revealLens.offsetHeight;
+
+
+  lensVideo.style.left =
+    (
+      -lensX +
+      w / 2
+    ) + "px";
+
+
+  lensVideo.style.top =
+    (
+      -lensY +
+      h / 2
+    ) + "px";
+
+
+  cursorDot.style.left =
+    cursorX + "px";
+
+
+  cursorDot.style.top =
+    cursorY + "px";
+
+
+  requestAnimationFrame(
+    animateLens
+  );
+
+}
+
+
+animateLens();
+
+
+
+
+
+/* =========================================================
+   CATEGORY DATA
+========================================================= */
+
+const categories = [
+
+  {
+
+    title:
+      "HIGH<br>PREMIUM",
+
+    description:
+      `
+      FOOD GIVEN ADDITIONAL VALUE THROUGH
+      BRANDING, EXCLUSIVITY, RARITY,
+      PRESENTATION OR EXPERIENCE.
+      `,
+
+    tags:
+      [
+        "PREMIUM",
+        "EXCLUSIVE",
+        "HIGH VALUE"
+      ]
+
+  },
+
+
+  {
+
+    title:
+      "STANDARD<br>MARKET",
+
+    description:
+      `
+      FOOD SOLD THROUGH ORDINARY RETAIL
+      SYSTEMS AT A STANDARD MARKET PRICE,
+      REPRESENTING EVERYDAY CONSUMPTION.
+      `,
+
+    tags:
+      [
+        "EVERYDAY",
+        "REGULAR",
+        "MARKET"
+      ]
+
+  },
+
+
+  {
+
+    title:
+      "REDUCED /<br>SUPPORTED",
+
+    description:
+      `
+      FOOD WHOSE MARKET VALUE HAS BEEN
+      REDUCED OR REDISTRIBUTED THROUGH
+      DISCOUNT AND SUPPORT SYSTEMS.
+      `,
+
+    tags:
+      [
+        "REDUCED",
+        "FOOD AID",
+        "REDISTRIBUTED"
+      ]
+
+  }
+
+];
+
+
+
+const cards =
+  document.querySelectorAll(
+    ".value-card"
+  );
+
+
+const infoHeading =
+  document.getElementById(
+    "info-heading"
+  );
+
+
+const infoDescription =
+  document.getElementById(
+    "info-description"
+  );
+
+
+const infoTags =
+  document.getElementById(
+    "info-tags"
+  );
+
+
+const counter =
+  document.getElementById(
+    "counter"
+  );
+
+
+const prev =
+  document.getElementById(
+    "prev"
+  );
+
+
+const next =
+  document.getElementById(
+    "next"
+  );
+
+
+let currentLevel = 0;
+
+
+
+/* =========================================================
+   UPDATE CARDS
+========================================================= */
+
+function updateCards() {
+
+
+  cards.forEach(
+
+    (
+      card,
+      index
+    ) => {
+
+
+      card.classList.remove(
+
+        "active",
+        "before",
+        "after"
+
+      );
+
+
+      if (
+        index === currentLevel
+      ) {
+
+        card.classList.add(
+          "active"
+        );
+
+      }
+
+
+      else {
+
+
+        const difference =
+          (
+            index -
+            currentLevel +
+            cards.length
+          )
+          %
+          cards.length;
+
+
+        if (
+          difference === 1
+        ) {
+
+          card.classList.add(
+            "after"
+          );
+
+        }
+
+
+        else {
+
+          card.classList.add(
+            "before"
+          );
+
+        }
+
+      }
+
+    }
+
+  );
+
+}
+
+
+
+/* =========================================================
+   LEVEL
+========================================================= */
+
+function setLevel(index) {
+
+
+  currentLevel =
+    index;
+
+
+  updateCards();
+
+
+  const data =
+    categories[index];
+
+
+  infoHeading.innerHTML =
+    data.title;
+
+
+  infoDescription.innerHTML =
+    data.description;
+
+
+  counter.textContent =
+    "0" +
+    (
+      index + 1
+    )
+    +
+    " / 03";
+
+
+  infoTags.innerHTML =
+    "";
+
+
+  data.tags.forEach(
+
+    text => {
+
+
+      const tag =
+        document.createElement(
+          "span"
+        );
+
+
+      tag.className =
+        "info-tag";
+
+
+      tag.textContent =
+        text;
+
+
+      infoTags.appendChild(
+        tag
+      );
+
+    }
+
+  );
+
+}
+
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+cards.forEach(
+
+  (
+    card,
+    index
+  ) => {
+
+
+    card.addEventListener(
+
+      "mouseenter",
+
+      () => {
+
+        setLevel(index);
+
+      }
+
+    );
+
+  }
+
+);
+
+
+
+/* =========================================================
+   CLICK
+========================================================= */
+
+cards.forEach(
+
+  (
+    card,
+    index
+  ) => {
+
+
+    card.addEventListener(
+
+      "click",
+
+      () => {
+
+
+        setLevel(index);
+
+
+        openPurchase(index);
+
+
+      }
+
+    );
+
+  }
+
+);
+
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+next.addEventListener(
+
+  "click",
+
+  () => {
+
+
+    setLevel(
+
+      (
+        currentLevel + 1
+      )
+      %
+      categories.length
+
+    );
+
+  }
+
+);
+
+
+prev.addEventListener(
+
+  "click",
+
+  () => {
+
+
+    setLevel(
+
+      (
+        currentLevel - 1 +
+        categories.length
+      )
+      %
+      categories.length
+
+    );
+
+  }
+
+);
+
+
+setLevel(0);
+
+
+
+
+
+/* =========================================================
+   POPUP ELEMENTS
+========================================================= */
+
+const purchaseOverlay =
+  document.getElementById(
+    "purchase-overlay"
+  );
+
+
+const closePurchaseButton =
+  document.getElementById(
+    "close-purchase"
+  );
+
+
+const purchaseHeaderText =
+  document.getElementById(
+    "purchase-header-text"
+  );
+
+
+const purchaseLevel =
+  document.getElementById(
+    "purchase-level"
+  );
+
+
+const purchaseTitle =
+  document.getElementById(
+    "purchase-title"
+  );
+
+
+const purchaseDescription =
+  document.getElementById(
+    "purchase-description"
+  );
+
+
+const priceBox =
+  document.getElementById(
+    "price-box"
+  );
+
+
+const priceNumber =
+  document.getElementById(
+    "price-number"
+  );
+
+
+const payButton =
+  document.getElementById(
+    "pay-button"
+  );
+
+
+const supportAction =
+  document.getElementById(
+    "support-action"
+  );
+
+
+const supportButton =
+  document.getElementById(
+    "support-button"
+  );
+
+
+const purchaseApple =
+  document.getElementById(
+    "purchase-apple"
+  );
+
+
+const rewardImage =
+  document.getElementById(
+    "reward-image"
+  );
+
+
+const rewardRing =
+  document.getElementById(
+    "reward-ring"
+  );
+
+
+const supportRoute =
+  document.getElementById(
+    "support-route"
+  );
+
+
+const objectStage =
+  document.getElementById(
+    "object-stage"
+  );
+
+
+const resultMessage =
+  document.getElementById(
+    "result-message"
+  );
+
+
+const resultTitle =
+  document.getElementById(
+    "result-title"
+  );
+
+
+const resultText =
+  document.getElementById(
+    "result-text"
+  );
+
+
+let purchaseMode =
+  0;
+
+
+let paid =
+  false;
+
+
+let selectedReward =
+  "";
+
+
+
+/* =========================================================
+   RANDOM STANDARD
+========================================================= */
+
+const standardRewards = [
+
+  "Apple1.png",
+  "Apple2.png",
+  "Apple3.png",
+  "Apple4.png",
+  "Apple5.png"
+
+];
+
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetPopup() {
+
+
+  paid =
+    false;
+
+
+  purchaseApple
+    .classList
+    .remove(
+      "explode",
+      "hidden"
+    );
+
+
+  rewardImage
+    .classList
+    .remove(
+      "show",
+      "finished"
+    );
+
+
+  rewardImage.style.opacity =
+    "0";
+
+
+  rewardImage.src =
+    "";
+
+
+  rewardRing
+    .classList
+    .remove(
+      "show"
+    );
+
+
+  resultMessage
+    .classList
+    .remove(
+      "show"
+    );
+
+
+  supportRoute
+    .classList
+    .remove(
+      "visible"
+    );
+
+
+  priceBox
+    .classList
+    .remove(
+      "hidden"
+    );
+
+
+  supportAction
+    .classList
+    .remove(
+      "visible"
+    );
+
+
+  payButton.disabled =
+    false;
+
+}
+
+
+
+/* =========================================================
+   OPEN
+========================================================= */
+
+function openPurchase(mode) {
+
+
+  purchaseMode =
+    mode;
+
+
+  resetPopup();
+
+
+  purchaseOverlay
+    .classList
+    .add(
+      "open"
+    );
+
+
+
+  /* =====================================================
+     LEVEL 01
+  ====================================================== */
+
+  if (
+    mode === 0
+  ) {
+
+
+    purchaseHeaderText.textContent =
+      "01 / HIGH PREMIUM / EXCLUSIVE ACCESS";
+
+
+    purchaseLevel.textContent =
+      "01 / VALUE LEVEL";
+
+
+    purchaseTitle.innerHTML =
+      "HIGH<br>PREMIUM";
+
+
+    purchaseDescription.innerHTML =
+      `
+      ONLY THE HIGHEST VALUE TIER
+      CAN ACCESS THIS OBJECT.
+
+      <br><br>
+
+      PAY £1000 TO UNLOCK
+      THE ULTRA-RARE REWARD.
+      `;
+
+
+    priceNumber.textContent =
+      "£1000";
+
+
+    payButton.textContent =
+      "PAY £1000 →";
+
+
+    selectedReward =
+      "gold.png";
+
+  }
+
+
+
+  /* =====================================================
+     LEVEL 02
+  ====================================================== */
+
+  if (
+    mode === 1
+  ) {
+
+
+    purchaseHeaderText.textContent =
+      "02 / STANDARD MARKET / MARKET ACCESS";
+
+
+    purchaseLevel.textContent =
+      "02 / VALUE LEVEL";
+
+
+    purchaseTitle.innerHTML =
+      "STANDARD<br>MARKET";
+
+
+    purchaseDescription.innerHTML =
+      `
+      THE SAME FOOD OBJECT ENTERS
+      THE ORDINARY MARKET SYSTEM.
+
+      <br><br>
+
+      PAY £50 TO GENERATE
+      A RANDOM MARKET VERSION.
+      `;
+
+
+    priceNumber.textContent =
+      "£50";
+
+
+    payButton.textContent =
+      "PAY £50 →";
+
+
+    selectedReward =
+      "";
+
+  }
+
+
+
+  /* =====================================================
+     LEVEL 03
+  ====================================================== */
+
+  if (
+    mode === 2
+  ) {
+
+
+    purchaseHeaderText.textContent =
+      "03 / REDUCED / SUPPORTED ACCESS";
+
+
+    purchaseLevel.textContent =
+      "03 / VALUE LEVEL";
+
+
+    purchaseTitle.innerHTML =
+      "REDUCED /<br>SUPPORTED";
+
+
+    purchaseDescription.innerHTML =
+      `
+      ACCESS ROUTE: SUPPORTED.
+
+      <br><br>
+
+      THIS ITEM IS NOT AVAILABLE
+      THROUGH DIRECT PURCHASE.
+
+      <br><br>
+
+      PROCEED TO THE NEAREST
+      FOOD SUPPORT POINT
+      FOR ALLOCATION.
+      `;
+
+
+    priceBox
+      .classList
+      .add(
+        "hidden"
+      );
+
+
+    supportAction
+      .classList
+      .add(
+        "visible"
+      );
+
+
+    purchaseApple
+      .classList
+      .add(
+        "hidden"
+      );
+
+
+    supportRoute
+      .classList
+      .add(
+        "visible"
+      );
+
+  }
+
+
+}
+
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+function closePurchase() {
+
+
+  purchaseOverlay
+    .classList
+    .remove(
+      "open"
+    );
+
+}
+
+
+closePurchaseButton
+  .addEventListener(
+
+    "click",
+
+    closePurchase
+
+  );
+
+
+purchaseOverlay
+  .addEventListener(
+
+    "pointerdown",
+
+    event => {
+
+
+      if (
+        event.target ===
+        purchaseOverlay
+      ) {
+
+        closePurchase();
+
+      }
+
+    }
+
+  );
+
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+function createParticles() {
+
+
+  const amount =
+    46;
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
+
+
+    const particle =
+      document.createElement(
+        "div"
+      );
+
+
+    particle.className =
+      "particle";
+
+
+    const angle =
+      Math.random()
+      *
+      Math.PI
+      *
+      2;
+
+
+    const distance =
+      70 +
+      Math.random() *
+      180;
+
+
+    const x =
+      Math.cos(angle)
+      *
+      distance;
+
+
+    const y =
+      Math.sin(angle)
+      *
+      distance;
+
+
+    particle.style.setProperty(
+
+      "--x",
+
+      x + "px"
+
+    );
+
+
+    particle.style.setProperty(
+
+      "--y",
+
+      y + "px"
+
+    );
+
+
+    particle.style.background =
+
+      Math.random() > .4
+
+      ?
+
+      "#d49bc3"
+
+      :
+
+      "#f0bf3f";
+
+
+    objectStage.appendChild(
+      particle
+    );
+
+
+    setTimeout(
+
+      () => {
+
+        particle.remove();
+
+      },
+
+      1000
+
+    );
+
+  }
+
+}
+
+
+
+/* =========================================================
+   PAY — LEVEL 01 + 02
+========================================================= */
+
+payButton.addEventListener(
+
+  "click",
+
+  () => {
+
+
+    if (
+      paid
+    ) {
+
+      return;
+
+    }
+
+
+    paid =
+      true;
+
+
+    payButton.disabled =
+      true;
+
+
+    payButton.textContent =
+      "PROCESSING...";
+
+
+
+    if (
+      purchaseMode === 1
+    ) {
+
+
+      const randomIndex =
+        Math.floor(
+          Math.random()
+          *
+          standardRewards.length
+        );
+
+
+      selectedReward =
+        standardRewards[
+          randomIndex
+        ];
+
+    }
+
+
+
+    rewardImage.src =
+      selectedReward;
+
+
+
+    purchaseApple
+      .classList
+      .add(
+        "explode"
+      );
+
+
+
+    setTimeout(
+
+      () => {
+
+        createParticles();
+
+      },
+
+      260
+
+    );
+
+
+
+    setTimeout(
+
+      () => {
+
+        rewardRing
+          .classList
+          .add(
+            "show"
+          );
+
+      },
+
+      470
+
+    );
+
+
+
+    setTimeout(
+
+      () => {
+
+
+        rewardImage.style.opacity =
+          "";
+
+
+        rewardImage
+          .classList
+          .add(
+            "show"
+          );
+
+
+      },
+
+      540
+
+    );
+
+
+
+    setTimeout(
+
+      () => {
+
+
+        rewardImage
+          .classList
+          .remove(
+            "show"
+          );
+
+
+        rewardImage
+          .classList
+          .add(
+            "finished"
+          );
+
+
+
+        if (
+          purchaseMode === 0
+        ) {
+
+
+          resultTitle.textContent =
+            "ULTRA-RARE OBJECT UNLOCKED";
+
+
+          resultText.textContent =
+            "YOU'VE OUTVALUED 99% OF PARTICIPANTS.";
+
+
+          payButton.textContent =
+            "ULTRA-RARE UNLOCKED";
+
+        }
+
+
+
+        if (
+          purchaseMode === 1
+        ) {
+
+
+          resultTitle.textContent =
+            "MARKET OBJECT GENERATED";
+
+
+          resultText.textContent =
+            "ONE OF FIVE STANDARD MARKET FORMS HAS BEEN ASSIGNED.";
+
+
+          payButton.textContent =
+            "MARKET OBJECT GENERATED";
+
+        }
+
+
+        resultMessage
+          .classList
+          .add(
+            "show"
+          );
+
+
+      },
+
+      2150
+
+    );
+
+
+  }
+
+);
+
+
+
+/* =========================================================
+   SUPPORT — LEVEL 03
+========================================================= */
+
+supportButton.addEventListener(
+
+  "click",
+
+  () => {
+
+
+    resultTitle.textContent =
+      "SUPPORT ROUTE ASSIGNED";
+
+
+    resultText.textContent =
+      "PLEASE PROCEED TO YOUR NEAREST FOOD SUPPORT POINT TO COLLECT THE AVAILABLE FOOD ALLOCATION.";
+
+
+    resultMessage
+      .classList
+      .add(
+        "show"
+      );
+
+
+    supportButton.textContent =
+      "ROUTE ASSIGNED";
+
+
+    supportButton.disabled =
+      true;
+
+  }
+
+);
+
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+window.addEventListener(
+
+  "keydown",
+
+  event => {
+
+
+    if (
+      event.key ===
+      "Escape"
+    ) {
+
+      closePurchase();
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowRight"
+    ) {
+
+      next.click();
+
+    }
+
+
+    if (
+      event.key ===
+      "ArrowLeft"
+    ) {
+
+      prev.click();
+
+    }
+
+  }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
